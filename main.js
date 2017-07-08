@@ -1,10 +1,5 @@
 console.log('Let the games begin!');
 
-  const TOP_GRID = document.querySelector('#top');
-  const MID_GRID = document.querySelector('#mid');
-  const BOT_GRID = document.querySelector('#bot');
-  const HEADER = document.querySelector('#header');
-
 //   // Listen For Key Events
 //   document.addEventListener('click', function game(event) {
 //     console.log(event.keyCode);
@@ -19,14 +14,28 @@ console.log('Let the games begin!');
 function startGame() {
     const LANDING = document.querySelector('#landing');
     const GAME = document.querySelector('#game');
+    const HEADER = document.querySelector('#header');
     
     LANDING.style.display = 'none';
     GAME.style.display = 'block';
 
-    let GRID_SQUARE = document.querySelectorAll('.grid-square');
+    const GRID_SQUARE = document.querySelectorAll('.grid-square');
+    let counter = 0;
+    let playerOne = 'X';
+    let playerTwo = 'O';
+
+
     for (let i = 0; i < GRID_SQUARE.length; i++) {
         GRID_SQUARE[i].addEventListener('click', function() {
-            this.innerHTML = 'X';
+            if (counter % 2 === 0) {
+                this.innerHTML = playerOne;
+                counter++;
+                console.log(counter);
+            } else {
+                this.innerHTML = playerTwo;
+                counter++;
+                console.log(counter);
+            }
         });
     }
 
