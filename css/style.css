@@ -1,0 +1,31 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+}
+h1 {
+    font-size: 4em;
+}
+
+#container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td {
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 6em;
+}
+
+.vertical {
+  border-left: 8px solid black;
+  border-right: 8px solid black;
+}
+
+.horizontal {
+  border-top: 8px solid black;
+  border-bottom: 8px solid black;
+}
