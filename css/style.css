@@ -1,8 +1,38 @@
 body {
     font-family: 'Helvetica', sans-serif;
+    background: #000; 
 }
+
 h1 {
     font-size: 4em;
+}
+#landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#landing h1 {
+    font-weight: bold;
+    letter-spacing: -6px;
+    margin-bottom: 50px;
+    color: #fff;
+}
+
+#start {
+    border: none;
+    outline-color: #ccc;
+    background-color: #555;
+    padding: 16px 32px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 500ms ease-in-out;
+}
+
+#start:hover {
+    color: #fff;
 }
 
 #container {
@@ -12,20 +42,26 @@ h1 {
     align-items: center;
 }
 
+#game {
+    display: none;
+}
+
 td {
     height: 150px;
     width: 150px;
     text-align: center;
     vertical-align: middle;
     font-size: 6em;
+    cursor: pointer;
+    color: #fff;
 }
 
 .vertical {
-  border-left: 8px solid black;
-  border-right: 8px solid black;
+  border-left: 8px solid #fff;
+  border-right: 8px solid #fff;
 }
 
 .horizontal {
-  border-top: 8px solid black;
-  border-bottom: 8px solid black;
+  border-top: 8px solid #fff;
+  border-bottom: 8px solid #fff;
 }
