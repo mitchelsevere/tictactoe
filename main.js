@@ -1,7 +1,5 @@
     console.log('Let the games begin!');
     
-    const LANDING = document.querySelector('#landing');
-    const GAME = document.querySelector('#game');
     const HEADER = document.querySelector('#header');
     const GRID_ONE = document.querySelector('#one');
     const GRID_TWO = document.querySelector('#two');
@@ -18,12 +16,14 @@
     let playerTwo = 'O';
 
 let startGame = function() {
+    const LANDING = document.querySelector('#landing');
+    const GAME = document.querySelector('#game');
     const GRID_SQUARE = document.querySelectorAll('.grid-square');
 
     LANDING.style.display = 'none';
-    GAME.style.display = 'block';
+    GAME.style.display = 'flex';
 
-    HEADER.innerHTML = `Turn: ${playerOne}`
+    HEADER.innerHTML = `TURN: ${playerOne}`
 
     // Got the Array.prototype from https://stackoverflow.com/questions/3871547/js-iterating-over-result-of-getelementsbyclassname-using-array-foreach
     // In order to iterate a nodeList (GRID_SQUARE) using map, I first must convert the nodeList to an array.
@@ -32,14 +32,19 @@ let startGame = function() {
        grid.addEventListener('click', function() {
             if (turn % 2 === 0) {
                 this.innerHTML = playerOne;
-                HEADER.innerHTML = `Turn: ${playerTwo}`
+                this.style.color = "#ce7c90";
+                HEADER.innerHTML = `TURN: ${playerTwo}`
                 turn++;
                 win();
             } else {
                 this.innerHTML = playerTwo;
-                HEADER.innerHTML = `Turn: ${playerOne}`
+                HEADER.innerHTML = `TURN: ${playerOne}`
                 turn++;
                 win();
+            }
+
+            if (turn >= 9) {
+                resetBoard();
             }
        });
    })
@@ -47,9 +52,9 @@ let startGame = function() {
 
 let checkWinner = function() {
     if (turn % 2 === 0)
-        HEADER.innerHTML = `${playerTwo} is the winner!`;
+        HEADER.innerHTML = `${playerTwo} IS THE WINNER!`;
     else {
-        HEADER.innerHTML = `${playerOne} is the winner!`;
+        HEADER.innerHTML = `${playerOne} IS THE WINNER!`;
     }
 }
 
