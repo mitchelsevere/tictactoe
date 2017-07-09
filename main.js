@@ -25,8 +25,11 @@ let startGame = function() {
 
     HEADER.innerHTML = `Turn: ${playerOne}`
 
-    for (let i = 0; i < GRID_SQUARE.length; i++) {
-        GRID_SQUARE[i].addEventListener('click', function() {
+    // Got the Array.prototype from https://stackoverflow.com/questions/3871547/js-iterating-over-result-of-getelementsbyclassname-using-array-foreach
+    // In order to iterate a nodeList (GRID_SQUARE) using map, I first must convert the nodeList to an array.
+   Array.prototype.map.call(GRID_SQUARE, function(grid) {
+       // Add Listener Event to each GRID_SQUARE
+       grid.addEventListener('click', function() {
             if (turn % 2 === 0) {
                 this.innerHTML = playerOne;
                 HEADER.innerHTML = `Turn: ${playerTwo}`
@@ -38,66 +41,15 @@ let startGame = function() {
                 turn++;
                 win();
             }
-        });
-    }
+       });
+   })
 }
 
-let win = function() {
-    // Starting from GRID ONE
-    if (GRID_ONE.innerText != '') {
-        // Horizontal win from Grid One
-       if (GRID_ONE.innerText === GRID_TWO.innerText && GRID_TWO.innerText === GRID_THREE.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        // Vertical win from Grid One
-        } else if (GRID_ONE.innerText === GRID_FOUR.innerText && GRID_FOUR.innerText === GRID_SEVEN.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        // Diagonal win from Grid One
-        } else if (GRID_ONE.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_NINE.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        }
-    }
-
-    // Starting from GRID TWO
-    if (GRID_TWO.innerText != '') {
-        // Vertical win from Grid Two
-       if (GRID_TWO.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_EIGHT.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        }
-    }
-
-    // Starting from GRID THREE
-    if (GRID_THREE.innerText != '') {
-        // Vertical win from Grid Three
-       if (GRID_THREE.innerText === GRID_SIX.innerText && GRID_SIX.innerText === GRID_NINE.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        // Diagonal win from Grid Three
-        } else if (GRID_THREE.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_SEVEN.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        }
-    }
-
-    // Starting from GRID FOUR
-    if (GRID_FOUR.innerText != '') {
-        // Horizontal win from Grid Four
-       if (GRID_FOUR.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_SIX.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        }
-    }
-
-    // Starting from GRID SIX
-    if (GRID_SEVEN.innerText != '') {
-        // Horizontal win from Grid Six
-       if (GRID_SEVEN.innerText === GRID_EIGHT.innerText && GRID_EIGHT.innerText === GRID_NINE.innerText) {
-            console.log(`${turn} wins!`);
-            resetBoard();
-        }
+let checkWinner = function() {
+    if (turn % 2 === 0)
+        HEADER.innerHTML = `${playerTwo} is the winner!`;
+    else {
+        HEADER.innerHTML = `${playerOne} is the winner!`;
     }
 }
 
@@ -114,6 +66,64 @@ let resetBoard = function() {
     turn = 0;
 }
 
+let win = function() {
+    // Starting from GRID ONE
+    if (GRID_ONE.innerText != '') {
+        // Horizontal win from Grid One
+       if (GRID_ONE.innerText === GRID_TWO.innerText && GRID_TWO.innerText === GRID_THREE.innerText) {
+            checkWinner();
+            resetBoard();
+        // Vertical win from Grid One
+        } else if (GRID_ONE.innerText === GRID_FOUR.innerText && GRID_FOUR.innerText === GRID_SEVEN.innerText) {
+            checkWinner();
+            resetBoard();
+        // Diagonal win from Grid One
+        } else if (GRID_ONE.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_NINE.innerText) {
+            checkWinner();
+            resetBoard();
+        }
+    }
+
+    // Starting from GRID TWO
+    if (GRID_TWO.innerText != '') {
+        // Vertical win from Grid Two
+       if (GRID_TWO.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_EIGHT.innerText) {
+            checkWinner();
+            resetBoard();
+        }
+    }
+
+    // Starting from GRID THREE
+    if (GRID_THREE.innerText != '') {
+        // Vertical win from Grid Three
+       if (GRID_THREE.innerText === GRID_SIX.innerText && GRID_SIX.innerText === GRID_NINE.innerText) {
+            checkWinner();
+            resetBoard();
+        // Diagonal win from Grid Three
+        } else if (GRID_THREE.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_SEVEN.innerText) {
+            checkWinner();
+            resetBoard();
+        }
+    }
+
+    // Starting from GRID FOUR
+    if (GRID_FOUR.innerText != '') {
+        // Horizontal win from Grid Four
+       if (GRID_FOUR.innerText === GRID_FIVE.innerText && GRID_FIVE.innerText === GRID_SIX.innerText) {
+            checkWinner();
+            resetBoard();
+        }
+    }
+
+    // Starting from GRID SIX
+    if (GRID_SEVEN.innerText != '') {
+        // Horizontal win from Grid Six
+       if (GRID_SEVEN.innerText === GRID_EIGHT.innerText && GRID_EIGHT.innerText === GRID_NINE.innerText) {
+            checkWinner();
+            resetBoard();
+        }
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#start').addEventListener('click', startGame);
