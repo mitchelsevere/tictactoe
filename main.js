@@ -76,7 +76,6 @@ let resetBoard = function() {
     GRID_EIGHT.innerText = '';
     GRID_NINE.innerText = '';
     turn = 0;
-    HEADER.innerHTML = `TURN: ${playerOne}`;
 }
 
 let win = function() {
