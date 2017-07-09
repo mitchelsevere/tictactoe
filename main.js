@@ -39,6 +39,7 @@ let startGame = function() {
             } else {
                 this.innerHTML = playerTwo;
                 HEADER.innerHTML = `TURN: ${playerOne}`
+                this.style.color = "#ce7c90";
                 turn++;
                 win();
             }
