@@ -23,7 +23,7 @@ let startGame = function() {
     LANDING.style.display = 'none';
     GAME.style.display = 'flex';
 
-    HEADER.innerHTML = `TURN: ${playerOne}`
+    HEADER.innerHTML = `TURN: ${playerOne}`;
 
     // Got the Array.prototype from https://stackoverflow.com/questions/3871547/js-iterating-over-result-of-getelementsbyclassname-using-array-foreach
     // In order to iterate a nodeList (GRID_SQUARE) using map, I first must convert the nodeList to an array.
@@ -38,12 +38,12 @@ let startGame = function() {
             if (turn % 2 === 0) {
                 this.innerHTML = playerOne;
                 this.style.color = "#ce7c90";
-                HEADER.innerHTML = `TURN: ${playerTwo}`
+                HEADER.innerHTML = `TURN: ${playerTwo}`;
                 turn++;
                 win();
             } else {
                 this.innerHTML = playerTwo;
-                HEADER.innerHTML = `TURN: ${playerOne}`
+                HEADER.innerHTML = `TURN: ${playerOne}`;
                 this.style.color = "#fff";
                 turn++;
                 win();
@@ -76,6 +76,7 @@ let resetBoard = function() {
     GRID_EIGHT.innerText = '';
     GRID_NINE.innerText = '';
     turn = 0;
+    HEADER.innerHTML = `TURN: ${playerOne}`;
 }
 
 let win = function() {
