@@ -3,10 +3,14 @@ body {
     background: #000; 
 }
 
-h1 {
-    font-size: 4em;
+#header {
+    color: #fff;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 50px;
 }
-#landing {
+
+#landing, #game {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +18,7 @@ h1 {
 }
 
 #landing h1 {
+    font-size: 4em;
     font-weight: bold;
     letter-spacing: -6px;
     margin-bottom: 50px;
