@@ -30,6 +30,11 @@ let startGame = function() {
    Array.prototype.map.call(GRID_SQUARE, function(grid) {
        // Add Listener Event to each GRID_SQUARE
        grid.addEventListener('click', function() {
+            // If Grid cell is not blank, do nothing
+            if (this.innerHTML !== '') {
+                return;
+            }
+
             if (turn % 2 === 0) {
                 this.innerHTML = playerOne;
                 this.style.color = "#ce7c90";
@@ -44,6 +49,7 @@ let startGame = function() {
                 win();
             }
 
+            // If nine turns happen and no win, reset board.
             if (turn >= 9) {
                 resetBoard();
             }
