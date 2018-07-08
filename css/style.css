@@ -101,3 +101,16 @@ td {
   border-bottom: 15px solid #fff;
 }
 
+.players {
+	position: absolute;
+	top: 50px;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.players h3 {
+	color: white;
+}
+
+
