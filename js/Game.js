@@ -18,7 +18,7 @@ Game.prototype.switchPlayer = function() {
 
 Game.prototype.marked = function(grid) {
   if (grid.innerText) {
-    
+    return true;
   }
 }
 
