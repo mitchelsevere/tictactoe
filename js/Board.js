@@ -1,16 +1,22 @@
 function Board() {
-  this.spaces = [];
+
 }
 
-function TicTacBoard() {
+Board.prototype.spaces = {};
 
+function TicTacBoard() {
   Board.call(this);
 }
 
 TicTacBoard.prototype = Object.create(Board.prototype);
 TicTacBoard.prototype.constructor = TicTacBoard;
 
-TicTacBoard.prototype.winningCombo = [
+TicTacBoard.prototype.spaces = {
+    X:[], 
+    O:[]
+}
+
+TicTacBoard.prototype.winningCombos = [
   [1, 4, 7],
   [2, 5, 8],
   [3, 6, 9],

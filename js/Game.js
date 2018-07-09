@@ -1,7 +1,6 @@
 function Game(playerOne, playerTwo) {
   this.playerOne = playerOne;
   this.playerTwo = playerTwo;
-  this.board = new Board();
   this.currentPlayer = playerOne;
 }
 
@@ -17,10 +16,19 @@ Game.prototype.switchPlayer = function() {
   }
 }
 
+Game.prototype.marked = function(grid) {
+  if (grid.innerText) {
+    
+  }
+}
+
+Game.prototype.board = new Board();
+
 function TicTacGame(playerOne, playerTwo) {
-  this.board = new TicTacBoard();
   Game.call(this, playerOne, playerTwo);
 }
 
 TicTacGame.prototype = Object.create(Game.prototype);
 TicTacGame.prototype.constructor = TicTacGame;
+
+TicTacGame.prototype.board = new TicTacBoard();
