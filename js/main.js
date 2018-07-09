@@ -11,12 +11,21 @@ let createBoard = function() {
 	return tictactoe;
 }
 
-let checkWinner = function(ttt) {
-	if (true) { // Placeholder
-		console.log(`Winner is ${ttt.currentPlayer.name}`);
-	} else {
-		ttt.switchPlayer();
+let checkMatch = function(spaces, markers, combination) {
+	for (let num of combination) {
+		if (spaces[markers].indexOf(num) === -1) return false;
 	}
+	return true;
+}
+
+let checkWinner = function(ttt, combinations) {
+	for (let combination of combinations) {
+    if (checkMatch(ttt.board.spaces, ttt.currentPlayer.marker, combination)) {
+			document.querySelector('#header').innerText = `${ttt.currentPlayer.name} wins!`;
+		}
+	}
+	ttt.switchPlayer();
+  return false;
 }
 
 let startGame = function() {
@@ -31,7 +40,8 @@ let startGame = function() {
 		grid.addEventListener('click', function() {
 			spaces[ttt.currentPlayer.marker].push(gridSquares.indexOf(grid) + 1);
 			spaces[ttt.currentPlayer.marker].sort();
-			checkWinner(ttt);
+			console.log(spaces);
+			checkWinner(ttt, ttt.board.winningCombos);
 		});
 	}
 }
