@@ -36,7 +36,7 @@ body {
     color: #fff;
 }
 
-span {
+.bounce {
     position: relative;
     animation: flip 500ms infinite;
 }
@@ -52,7 +52,7 @@ span {
         top: -10px;
     }
 }
-#start {
+#start, #again {
     border: none;
     outline-color: rgba(230, 230, 230, 0.9);
     background-color: #ce7c90;
@@ -63,6 +63,7 @@ span {
     font-weight: bold;
     cursor: pointer;
     transition: all 500ms ease-in-out;
+    margin-bottom: 20px;
 }
 
 #start:hover {

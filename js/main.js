@@ -2,7 +2,7 @@
 
 console.log('Let the games begin!');
  
-let createBoard = function() {
+let createBoard = () => {
 	const playerOne = new Player('Player1', 'X');
 	const playerTwo = new Player('Player2', 'O');
 	const tictactoe = new TicTacGame(playerOne, playerTwo);
@@ -13,10 +13,8 @@ let createBoard = function() {
 	return tictactoe;
 }
 
-let checkMatches = function(spaces, marker, combination) {
-	for (let num of combination) {
-		if (spaces[marker].indexOf(num) === -1) return false;
-	}
+let checkMatches = (spaces, marker, combination) => {
+	for (let num of combination) if (spaces[marker].indexOf(num) === -1) return false;
 	return true;
 }
 
@@ -26,42 +24,59 @@ let checkWinner = function(ttt, combinations) {
 
 	for (let combination of combinations) {
     if (checkMatches(spaces, marker, combination)) {
-			document.querySelector('#header').innerText = `${ttt.currentPlayer.name} wins!`;
+			let header = document.querySelector('#header');
+			header.innerText = `${ttt.currentPlayer.name} wins!`;
+			header.classList = 'bounce';
+			document.querySelector('#grid').style = 'pointer-events: none';
 			return true;
 		}
 	}
 	ttt.switchPlayer();
-	console.log('switching players', ttt.currentPlayer);
   return false;
 }
 
-let placeMarker = function(gridSquares) {
-	const ttt = createBoard();
-	const spaces = ttt.board.spaces;
+let playAgain = (gridSquares, marker1, marker2, moves) => {
+	document.querySelector('#grid').style = 'pointer-events: initial';
+	
+	const again = document.querySelector('#again');
+	again.style.display = 'flex';
 
+	again.addEventListener('click', function() {
+		document.querySelector('#header').innerText = '';
+		// Make sure board is empty when started
+		for (let grid of gridSquares) grid.innerText = ''; 
+		marker1.length = 0; marker2.length = 0; moves.length = 0;
+		createGame();
+	});
+}
+
+let createGame = () =>  {
+	document.querySelector('#landing').style.display = 'none';
+	document.querySelector('#again').style.display = 'none';
+	document.querySelector('#game').style.display = 'flex';
+
+	const gridSquares = [].slice.call(document.querySelectorAll('.grid-square')); // converting from nodelist to array
+	const ttt = createBoard();
+	const board = ttt.board;
+	const moves = [];
+
+	// Place eventlisteners for clicks
 	for (let grid of gridSquares) {
 		grid.addEventListener('click', function() {
 			if (ttt.marked(grid)) {
 				grid.removeEventListener('click', function() { console.log('removed') }, true);
 			} else {
 				const marker = ttt.currentPlayer.marker;
-				spaces[marker].push(gridSquares.indexOf(grid) + 1);
-				spaces[marker].sort();
+				board.spaces[marker].push(gridSquares.indexOf(grid) + 1);
+				board.spaces[marker].sort();
 				grid.innerText = marker;
-				checkWinner(ttt, ttt.board.winningCombos);
+				moves.push(board.spaces[marker]);
+				if (moves.length === 9 || checkWinner(ttt, board.winningCombos)) playAgain(gridSquares, board.spaces['X'], board.spaces['O'], moves);
 			}
 		});
 	}
 }
 
-let startGame = function() {
-	const gridSquares = [].slice.call(document.querySelectorAll('.grid-square')); // converting from nodelist to array
-	document.querySelector('#landing').style.display = 'none';
-	document.querySelector('#game').style.display = 'flex';
-
-	placeMarker(gridSquares);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('#start').addEventListener('click', startGame);
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#start').addEventListener('click', createGame);
 });
