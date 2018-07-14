@@ -1,4 +1,5 @@
-# Tic Tac Toe
+# Tic Tac Toe (Updated using OO/Prototypal Programming)
+Decided to teach myself prototypes in Javascript by refactoring old JS code.
 *Tic Tac Toe can be viewed [here](https://thatdudemitch.github.io/tictactoe/)*
 ![Image](https://github.com/thatdudemitch/tictactoe/blob/master/images/tic-tac-screenshot.png)
 
@@ -11,8 +12,9 @@
 
 ## Future Improvements
 
+* ~~Refactoring JS~~
 * Responsive Design
-* Refactoring JS
+
 
 ### Created By
 `Mitchel Severe`

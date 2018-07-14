@@ -25,6 +25,7 @@ let checkMatches = (spaces, marker, combination) => {
 let checkWinner = function(ttt, combinations) {
 	const spaces = ttt.board.spaces;
 	const marker = ttt.currentPlayer.marker;
+	const i = 1;
 	// looping through the winningcombinations array and passing each array to the checkmatches function to see if those three numbers match what's in the currentplayers array
 	// If it is then annouce the winner else switch to the next player
 	for (let combination of combinations) {
